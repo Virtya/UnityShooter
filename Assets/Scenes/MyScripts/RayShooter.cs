@@ -9,10 +9,10 @@ public class RayShooter : MonoBehaviour
     
     void Start()
     {
-       /* _camera = GetComponent<Camera>();
+        _camera = GetComponent<Camera>();
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = true;*/
+        /*Cursor.lockState = CursorLockMode.Locked;*/
+        Cursor.visible = true;
     }
 
     void OnGUI()
@@ -26,7 +26,7 @@ public class RayShooter : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && EventSystem.current.IsPointerOverGameObject())
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             Vector3 point = new Vector3(_camera.pixelWidth / 2, _camera.pixelHeight / 2, 0);
             Ray _ray = _camera.ScreenPointToRay(point);
