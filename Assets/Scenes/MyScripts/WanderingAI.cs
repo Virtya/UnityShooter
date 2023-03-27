@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WanderingAI : MonoBehaviour
-{ 
+{
+    public const float baseSpeed = 3.0f;
+
     // Как и в сценарии SceneController
     [SerializeField] private GameObject fireballPrefab;
     private GameObject _fireball;
@@ -47,6 +49,21 @@ public class WanderingAI : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void Awake()
+    {
+        Messenger<float>.AddListener(GameEvent.SPEED_CHANGED, OnSpeedChanged);
+    }
+
+    private void OnDestroy()
+    {
+        Messenger<float>.RemoveListener(GameEvent.SPEED_CHANGED, OnSpeedChanged);
+    }
+
+    private void OnSpeedChanged(float value)
+    {
+        speed = baseSpeed * value;
     }
 
     public void SetAlive(bool alive)

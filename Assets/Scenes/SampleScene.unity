@@ -8425,7 +8425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7ae1ee4a5f76f54bb4f3b2008cb3b71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreLabel1: {fileID: 501268976}
+  scoreLabel: {fileID: 501268976}
   settingsPopup: {fileID: 791429828}
 --- !u!1 &1392505383 stripped
 GameObject:
