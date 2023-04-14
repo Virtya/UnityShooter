@@ -5,11 +5,16 @@ using UnityEngine.EventSystems;
 
 public class RayShooter : MonoBehaviour
 {
+    [SerializeField] private AudioSource soundSource;
+    [SerializeField] private AudioClip hitWallSound;
+    [SerializeField] private AudioClip hitEnemySound;
+
     private Camera _camera;
     
     void Start()
     {
         _camera = GetComponent<Camera>();
+        soundSource.volume = 0.25f;
 
         /*Cursor.lockState = CursorLockMode.Locked;*/
         Cursor.visible = true;
@@ -38,11 +43,13 @@ public class RayShooter : MonoBehaviour
                 if (target != null)
                 {
                     target.ReactToHit();
+                    soundSource.PlayOneShot(hitEnemySound);
                     Messenger.Broadcast(GameEvent.ENEMY_HIT);
                 }
                 else
                 {
                     StartCoroutine(SphereIndicator(_hit.point));
+                    soundSource.PlayOneShot(hitWallSound);
                 }
             }
         }

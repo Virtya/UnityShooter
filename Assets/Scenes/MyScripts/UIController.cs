@@ -12,9 +12,29 @@ public class UIController : MonoBehaviour
 
     void Start()
     {
+        settingsPopup.gameObject.SetActive(false);
         _score = 0;
         scoreLabel.text = "Kills: " + _score.ToString();
         settingsPopup.Close();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            bool isShowing = settingsPopup.gameObject.activeSelf;
+            settingsPopup.gameObject.SetActive(!isShowing);
+
+            if (isShowing )
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            } else
+            {
+                Cursor.lockState= CursorLockMode.None;
+                Cursor.visible = true;
+            }
+        }
     }
 
     private void Awake()
